@@ -1,11 +1,21 @@
 const assert = require('assert');
 const constants = require('../lib/bitmap-constants');
 const BitmapHeader = require('../lib/bitmap-header');
+const { readFile } = require('fs'); 
 
 describe('bitmap header', () => {
 
     let buffer = null;
-    beforeEach(() => {
+    beforeEach((done) => {
+        readFile('./test/test-bitmap.bmp', (err, buffyTheBuffnessMonster) => {
+            if(err) return done(err);
+            buffer = buffyTheBuffnessMonster;
+            done();
+        });
+
+
+        
+
         // TODO: file read './test/test-bitmap.bmp' and put the promise return into buffer variable
     });
 

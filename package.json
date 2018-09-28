@@ -1,0 +1,30 @@
+{
+  "name": "bitmap-transformer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeBLambert/bitmap-transformer.git"
+  },
+  "author": "davidhchhing@gmail.com (https://github.com/davidchhing)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikeBLambert/bitmap-transformer/issues"
+  },
+  "homepage": "https://github.com/MikeBLambert/bitmap-transformer#readme",
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "jest": "^23.6.0"
+  }
+}
