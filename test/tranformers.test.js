@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { invert } = require('../lib/invert-transformer');
 const { grayscale } = require('../lib/grayscale-transformer');
+const { removeBlue } = require('../lib/removeBlue-transformer');
 
 describe('transformers', () => {
 
@@ -35,5 +36,20 @@ describe('transformers', () => {
         });
     });
 
+    it('removeBlue', () => {
+        // HINT: grayscale assigns the average of all three colors
+        // as the new value for each color
+        const transformed = removeBlue({
+            r: 34,
+            g: 100,
+            b: 205
+        });
+
+        assert.deepEqual(transformed, {
+            r: 34,
+            g: 100,
+            b: 0
+        });
+    });
     // TODO: add a third transformer (you'll need to add the module and require!) and test
 });
