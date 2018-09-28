@@ -20,9 +20,6 @@ describe('bitmap header', () => {
         // You don't need to change this test, you need to put the correct values into
         // '../lib/bitmap-constants'
 
-        // const constants = new Constants(5, 54, 24);
-
-
         assert.ok(constants.PIXEL_OFFSET);
         assert.ok(constants.BITS_PER_PIXEL_OFFSET);
         assert.ok(constants.FILE_SIZE_OFFSET);
