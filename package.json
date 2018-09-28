@@ -10,8 +10,9 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test:run": "jest",
+    "test": "npm run test:run",
+    "start": "npm run test:run -- --watch"
   },
   "repository": {
     "type": "git",
