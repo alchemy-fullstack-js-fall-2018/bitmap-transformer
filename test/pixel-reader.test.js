@@ -1,9 +1,10 @@
 const assert = require('assert');
 const PixelReader = require('../lib/pixel-reader');
 
-describe.skip('Pixel Reader', () => {
+describe('Pixel Reader', () => {
 
     it('reads pixel from buffer', done => {
+
         const reader = new PixelReader({ bitsPerPixel: 24 });
         
         // TODO: subscribe to reader "color" event and push into `colors` array.
@@ -16,12 +17,17 @@ describe.skip('Pixel Reader', () => {
         // }
         const colors = [];
         reader.on('color', color => {
-            const { offset, b, g, r } = color;
             colors.push(color);
         });
 
         reader.on('end', () => {
 
+            assert.deepEqual(colors[0], { offset: 0, b:0x00, g:0x00, r:0xFF });
+            
+            assert.deepEqual(colors[1], { offset: 3, b:0x00, g:0x80, r:0x00 });
+           
+            assert.deepEqual(colors[2], { offset: 6, b:0xFF, g:0x00, r:0x00 });
+            done();
             // write deepEqual assertion for colors versus the
             // expected rgb color objects
 
@@ -30,14 +36,20 @@ describe.skip('Pixel Reader', () => {
         });
 
         // Create a buffer with known data for your colors
-        const buffer = Buffer.alloc(24 * 3); 
+        const buffer = new Buffer.alloc(24 * 3); 
         
-        
-        // for three pixels
-        // TODO: fill buffer with byte values that match your 
-        // expected test colors
+        buffer.writeUInt8(0x00, 0);
+        buffer.writeUInt8(0x00, 1);
+        buffer.writeUInt8(0xFF, 2);
 
-        // Call read method with your buffer
+        buffer.writeUInt8(0x00, 3);
+        buffer.writeUInt8(0x80, 4);
+        buffer.writeUInt8(0x00, 5);
+
+        buffer.writeUInt8(0xFF, 6);
+        buffer.writeUInt8(0x00, 7);
+        buffer.writeUInt8(0x00, 8);
+
         reader.read(buffer);
     });
 
