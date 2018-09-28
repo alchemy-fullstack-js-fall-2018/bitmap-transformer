@@ -3,6 +3,7 @@ const constants = require('../lib/bitmap-constants');
 const BitmapHeader = require('../lib/bitmap-header');
 const { readFile } = require('fs'); 
 
+
 describe('bitmap header', () => {
 
     let buffer = null;
@@ -26,7 +27,7 @@ describe('bitmap header', () => {
     });
 
     it('parses header data', () => {
-        // TODO: use the constants to populate the following properties
+        // TODONE: use the constants to populate the following properties
         // on the BitmapHeader in its constructor.
         // These test values are correct for the supplied test-bitmap.bmp
         const header = new BitmapHeader(buffer);
