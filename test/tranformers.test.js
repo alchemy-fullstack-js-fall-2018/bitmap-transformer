@@ -1,8 +1,9 @@
 const assert = require('assert');
-const invert = require('../lib/invert-transformer');
-const grayscale = require('../lib/grayscale-transformer');
+const { invert } = require('../lib/invert-transformer');
+const { grayscale } = require('../lib/grayscale-transformer');
+const { luminosity } = require('../lib/luminosity-transformer');
 
-describe.skip('transformers', () => {
+describe('transformers', () => {
 
     it('invert', () => {
         // HINT: invert subtracts each value from 255
@@ -35,5 +36,18 @@ describe.skip('transformers', () => {
         });
     });
 
-    // TODO: add a third transformer (you'll need to add the module and require!) and test
+    it('luminosity', () => {
+            
+        const transformed = luminosity({
+            r: 34,
+            g: 100,
+            b: 205
+        });
+    
+        assert.deepEqual(transformed, {
+            r: 93,
+            g: 93,
+            b: 93
+        });
+    });
 });
