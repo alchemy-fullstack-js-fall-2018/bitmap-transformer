@@ -6,8 +6,14 @@ const invert = require('../lib/invert-transform');
 describe('bitmap file transformer', () => {
     
     let buffer = null;
-    beforeEach(() => {
-        // TODO: file read sync './test/test-bitmap.bmp' into buffer variable
+    beforeEach(done => {
+        // TODONE: file read sync './test/test-bitmap.bmp' into buffer variable
+
+        readFileSync('./test/test-bitmap.bmp', (err, buffyTheBuffnessMonster) => {
+            if(err) return done(err);
+            buffer = buffyTheBuffnessMonster;
+            done();
+        });
     });
 
     // "pinning" test, or "snapshot" test
