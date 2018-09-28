@@ -9,13 +9,7 @@ describe('Pixel Reader', () => {
         const colors = [];
 
         reader.on('color', color => {
-            const { offset, b, g, r } = color;
-            colors.push({
-                offset: offset,
-                b: b,
-                g: g,
-                r: r
-            });
+            colors.push(color);
         });
 
         // TODO: subscribe to reader "color" event and push into `colors` array.
@@ -28,7 +22,11 @@ describe('Pixel Reader', () => {
         // }
 
         reader.on('end', () => {
-            assert.deepEqual(colors[0], { offset: 0, b: 116, g: 63, r: 63 });
+            assert.deepEqual(colors[0], { offset: 0, b: 10, g: 100, r: 150 });
+            done();
+            assert.deepEqual(colors[1], { offset: 3, b: 200, g: 250, r: 50 });
+            done();
+            assert.deepEqual(colors[2], { offset: 6, b: 60, g: 70, r: 80 });
             done();
             // write deepEqual assertion for colors versus the
             // expected rgb color objects
@@ -40,9 +38,17 @@ describe('Pixel Reader', () => {
         const buffer = Buffer.alloc(24 * 3); // for three pixels
         // TODO: fill buffer with byte values that match your 
         // expected test colors
-        buffer.writeInt8(116, 0);
-        buffer.writeInt8(63, 8);
-        buffer.writeInt8(63, 16);
+        buffer.writeUInt8(10, 0);
+        buffer.writeUInt8(100, 1);
+        buffer.writeUInt8(150, 2);
+        buffer.writeUInt8(200, 3);
+        buffer.writeUInt8(250, 4);
+        buffer.writeUInt8(50, 5);
+        buffer.writeUInt8(60, 6);
+        buffer.writeUInt8(70, 7);
+        buffer.writeUInt8(80, 8);
+
+        console.log('test buffer', buffer);
 
         // Call read method with your buffer
         reader.read(buffer);
