@@ -7,7 +7,7 @@ describe('bitmap header', () => {
 
     let buffer = null;
     beforeEach((done) => {
-        // TODO: file read './test/test-bitmap.bmp' and put the promise return into buffer variable
+        // TODONE: file read './test/test-bitmap.bmp' and put the promise return into buffer variable
         readFile('./test/test-bitmap.bmp', (err, buffyTheBuffnessMonster) => {
             if(err) return done(err);
             buffer = buffyTheBuffnessMonster;
@@ -16,7 +16,7 @@ describe('bitmap header', () => {
     });
 
     it('has correct specs', () => {
-        // TODO: read the wiki spec docs to figure out what these values should be.
+        // TODONE: read the wiki spec docs to figure out what these values should be.
         // You don't need to change this test, you need to put the correct values into
         // '../lib/bitmap-constants'
 
