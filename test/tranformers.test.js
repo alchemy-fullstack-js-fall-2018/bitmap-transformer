@@ -1,7 +1,7 @@
 const assert = require('assert');
 // const invert = require('../lib/invert-transformer');
 const grayscale = require('../lib/grayscale-transformer');
-// const maxRed = require('../lib/maxRed');
+const maxRed = require('../lib/maxRed-transformer');
 
 describe('transformers', () => {
 
@@ -37,18 +37,18 @@ describe('transformers', () => {
         });
     });
 
-    // // TODO: add a third transformer (you'll need to add the module and require!) and test
-    // it('maxRed', () => {
-    //     const transformed = maxRed({
-    //         r: 34,
-    //         g: 100,
-    //         b: 205
-    //     });
+    // TODO: add a third transformer (you'll need to add the module and require!) and test
+    it('maxRed', () => {
+        const transformed = maxRed({
+            r: 34,
+            g: 100,
+            b: 205
+        });
 
-    //     assert.deepEqual(transformed, {
-    //         r: 255,
-    //         g: 100,
-    //         b: 205
-    //     });
-    // });
+        assert.deepEqual(transformed, {
+            r: 255,
+            g: 100,
+            b: 205
+        });
+    });
 });
