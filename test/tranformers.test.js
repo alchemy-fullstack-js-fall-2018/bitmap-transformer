@@ -38,7 +38,7 @@ describe('transformers', () => {
 
     it('luminosity', () => {
 
-        const transformed = luminosity( {
+        const transformed = luminosity({
             r: 34,
             g: 100,
             b: 205

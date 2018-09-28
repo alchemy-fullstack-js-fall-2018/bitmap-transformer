@@ -5,8 +5,11 @@ describe('Pixel Reader', () => {
 
     it('reads pixel from buffer', done => {
         const reader = new PixelReader({ bitsPerPixel: 24 });
-        
         const colors = [];
+        
+        reader.on('color', color => {
+            colors.push(color);
+        });
 
         // TODO: subscribe to reader "color" event and push into `colors` array.
         // A "color" object should look like:
@@ -22,6 +25,7 @@ describe('Pixel Reader', () => {
             // expected rgb color objects
 
             // Don't forget to call done()!
+            done(); 
         });
 
         // Create a buffer with known data for your colors
@@ -30,7 +34,11 @@ describe('Pixel Reader', () => {
         // expected test colors
 
         // Call read method with your buffer
+        buffer.writeUInt8(0xFF, 0);
+        buffer.writeUInt8(0xFF, 1);
+        buffer.writeUInt8(0xFF, 2);
         reader.read(buffer);
+        console.log(buffer);
     });
 
 });
