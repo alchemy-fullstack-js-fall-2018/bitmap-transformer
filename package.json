@@ -1,0 +1,31 @@
+{
+  "name": "bitmap-transformer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test:run": "jest",
+    "test": "npm run test:run",
+    "start": "npm run test:run -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miloofcroton/bitmap-transformer.git"
+  },
+  "author": "Jack Toumey <jack@toumey.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miloofcroton/bitmap-transformer/issues"
+  },
+  "homepage": "https://github.com/miloofcroton/bitmap-transformer#readme",
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "jest": "^23.6.0"
+  }
+}
