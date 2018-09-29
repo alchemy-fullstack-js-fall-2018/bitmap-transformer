@@ -3,13 +3,14 @@ const { readFileSync } = require('fs');
 const BitmapTransformer = require('../lib/bitmap-transformer');
 const invert = require('../lib/invert-transformer');
 
-describe.skip('bitmap file transformer', () => {
+describe('bitmap file transformer', () => {
     
     let buffer = null;
     beforeEach(() => {
         // TODO: file read sync './test/test-bitmap.bmp' into buffer variable
+        buffer = readFileSync('./test/test-bitmap.bmp');
     });
-
+    
     // "pinning" test, or "snapshot" test
     it('test whole transform', done => {
         // Use the BitmapTransformer class, 
@@ -20,7 +21,6 @@ describe.skip('bitmap file transformer', () => {
         // With this api, you pass in a transformation function (we are testing with "invert")
         bitmap.transform(invert, err => {
             if(err) return done(err);
-
             // After above step, the buffer has been modified
             // and is accessible via bitmap.buffer.
     
