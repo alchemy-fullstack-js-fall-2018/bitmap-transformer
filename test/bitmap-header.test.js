@@ -7,6 +7,7 @@ const fs = require('fs');
 describe('bitmap header', () => {
 
     let buffer = null;
+    
     beforeEach(done => {
         fs.readFile('./test/test-bitmap.bmp', (err, data) => {
             if(err) return done(err);
@@ -27,4 +28,5 @@ describe('bitmap header', () => {
         assert.equal(header.bitsPerPixel, 24);
         assert.equal(header.fileSize, 30054);
     });
+
 });

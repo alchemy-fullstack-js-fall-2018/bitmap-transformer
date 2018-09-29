@@ -6,7 +6,6 @@ const maxRed = require('../lib/maxRed-transformer');
 describe('transformers', () => {
 
     it('invert', () => {
-        // HINT: invert subtracts each value from 255
         const transformed = invert({
             r: 34,
             g: 100,
@@ -21,14 +20,11 @@ describe('transformers', () => {
     });
 
     it('grayscale', () => {
-        // HINT: grayscale assigns the average of all three colors
-        // as the new value for each color
         const transformed = grayscale({
             r: 34,
             g: 100,
             b: 205
         });
-        console.log('transformed', transformed);
 
         assert.deepEqual(transformed, {
             r: 113,
@@ -37,7 +33,6 @@ describe('transformers', () => {
         });
     });
 
-    // TODO: add a third transformer (you'll need to add the module and require!) and test
     it('maxRed', () => {
         const transformed = maxRed({
             r: 34,
