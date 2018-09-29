@@ -1,39 +1,67 @@
 const assert = require('assert');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 const BitmapTransformer = require('../lib/bitmap-transformer');
-const invert = require('../lib/invert-transform');
+const { invert, grayscale, redscale, sepia } = require('../lib/pixel-transformers');
+
+/* eslint-disable-next-line no-unused-vars */
+function sampler(test) {
+    const bitmap = new BitmapTransformer(readFileSync('./test/pics/test-bitmap.bmp'));
+    const path = `./test/pics/${test.name}-expected.bmp`;
+    bitmap.transform(test, () => writeFileSync(path, bitmap.buffer));
+}
 
 describe('bitmap file transformer', () => {
     
     let buffer = null;
     beforeEach(() => {
-        // TODO: file read sync './test/test-bitmap.bmp' into buffer variable
+        buffer = readFileSync('./test/pics/test-bitmap.bmp');
     });
+    
+    it('tests whole transform with invert', done => {
 
-    // "pinning" test, or "snapshot" test
-    it('test whole transform', done => {
-        // Use the BitmapTransformer class, 
-        // passing in the buffer from the file read
         const bitmap = new BitmapTransformer(buffer);
 
-        // Call .transform(), which will modify the buffer.
-        // With this api, you pass in a transformation function (we are testing with "invert")
         bitmap.transform(invert, err => {
             if(err) return done(err);
-
-            // After above step, the buffer has been modified
-            // and is accessible via bitmap.buffer.
-    
-            // Read the output file we saved earlier as the "standard" expected output file.
-            const expected = readFileSync('./test/inverted-expected.bmp')
+            const expected = readFileSync('./test/pics/invert-expected.bmp');
             assert.deepEqual(bitmap.buffer, expected);
             done();
-
-            // If you don't have a standard file yet, or need to update or are adding new test,
-            // you can write it out by commenting above code block, and uncomment code below 
-            // that writes the file and then visually inspect the file for correctness.
-            // return fs.writeFileSync('./test/inverted-expected.bmp', bitmap.buffer);
         });
+    });
 
+    it('tests whole transform with grayscale', done => {
+        
+        const bitmap = new BitmapTransformer(buffer);
+
+        bitmap.transform(grayscale, err => {
+            if(err) return done(err);
+            const expected = readFileSync('./test/pics/grayscale-expected.bmp');
+            assert.deepEqual(bitmap.buffer, expected);
+            done();
+        });
+    });
+
+    it('tests whole transform with redscale', done => {
+
+        const bitmap = new BitmapTransformer(buffer);
+
+        bitmap.transform(redscale, err => {
+            if(err) return done(err);
+            const expected = readFileSync('./test/pics/redscale-expected.bmp');
+            assert.deepEqual(bitmap.buffer, expected);
+            done();
+        });
+    });
+
+    it('tests whole transform with sepia', done => {
+
+        const bitmap = new BitmapTransformer(buffer);
+
+        bitmap.transform(sepia, err => {
+            if(err) return done(err);
+            const expected = readFileSync('./test/pics/sepia-expected.bmp');
+            assert.deepEqual(bitmap.buffer, expected);
+            done();
+        });
     });
 });
