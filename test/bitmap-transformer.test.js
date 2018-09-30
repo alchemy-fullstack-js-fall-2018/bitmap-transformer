@@ -1,13 +1,14 @@
 const assert = require('assert');
 const { readFileSync } = require('fs');
 const BitmapTransformer = require('../lib/bitmap-transformer');
-// const invert = require('../lib/invert-transform');
+const invert = require('../lib/invert-transformer');
 
 describe('bitmap file transformer', () => {
     
     let buffer = null;
     beforeEach(() => {
         // TODO: file read sync './test/test-bitmap.bmp' into buffer variable
+        buffer = readFileSync('./test/test-bitmap.bmp');
     });
 
     // "pinning" test, or "snapshot" test
