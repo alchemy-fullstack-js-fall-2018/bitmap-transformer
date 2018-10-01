@@ -1,6 +1,5 @@
 const assert = require('assert');
 const { readFileSync } = require('fs');
-const { readFile } = require('fs').promises;
 const { BitmapTransformer } = require('../lib/bitmap-transformer');
 const { invert } = require('../lib/invert-transformer');
 const path = require('path');
@@ -10,8 +9,7 @@ describe('bitmap file transformer', () => {
     let buffer = null;
     let bitmapPath = path.join(__dirname, 'test-bitmap.bmp');
     beforeEach(() => {
-        return readFile(bitmapPath)
-            .then(b => buffer = b);
+        buffer = readFileSync(bitmapPath);
     });
 
     // "pinning" test, or "snapshot" test
