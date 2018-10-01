@@ -1,10 +1,11 @@
 const assert = require('assert');
-const { readFile, readFileSync } = require('fs');
-const BitmapTransformer = require('../lib/bitmap-transformer');
-const invert = require('../lib/invert-transformer');
+const { readFileSync } = require('fs');
+const { readFile } = require('fs').promises;
+const { BitmapTransformer } = require('../lib/bitmap-transformer');
+const { invert } = require('../lib/invert-transformer');
 const path = require('path');
 
-describe.skip('bitmap file transformer', () => {
+describe('bitmap file transformer', () => {
     
     let buffer = null;
     let bitmapPath = path.join(__dirname, 'test-bitmap.bmp');
