@@ -21,7 +21,6 @@ describe('Pixel Reader', () => {
             done();
         });
 
-        // Create a buffer with known data for your colors
         const buffer = Buffer.alloc(3 * 3); // allocate in BYTES, not BITS
         buffer.writeUInt8(purplePixel.b, 0);
         buffer.writeUInt8(purplePixel.g, 1);
@@ -33,7 +32,6 @@ describe('Pixel Reader', () => {
         buffer.writeUInt8(greenPixel.g, 7);
         buffer.writeUInt8(greenPixel.r, 8);
 
-        // Call read method with your buffer
         reader.read(buffer);
     });
 
