@@ -26,26 +26,26 @@ describe('Pixel Reader', () => {
             // Don't forget to call done()!
             assert.deepEqual(colors, [{
                 offset: 0,
-                b: '80',
-                g: '80',
-                r: '0'
+                b: 128,
+                g: 128,
+                r: 0
             }, {
-                offset: 24,
-                b: 'ff',
-                g: '0',
-                r: 'ff'
+                offset: 3,
+                b: 255,
+                g: 0,
+                r: 255
             }, {
-                offset: 48,
-                b: '0',
-                g: 'ff',
-                r: '7f'
+                offset: 6,
+                b: 0,
+                g: 255,
+                r: 127
             }           
             ]);
         });
         done(); 
         
         // Create a buffer with known data for your colors
-        const buffer = Buffer.alloc(24 * 3); // for three pixels
+        const buffer = Buffer.alloc(3 * 3); // for three pixels
         // TODO: fill buffer with byte values that match your 
         // expected test colors
 
@@ -55,13 +55,13 @@ describe('Pixel Reader', () => {
         buffer.writeUInt8(0x80, 1);
         buffer.writeUInt8(0x00, 2);
         //this color is magenta//
-        buffer.writeUInt8(0xFF, 24);
-        buffer.writeUInt8(0x00, 25);
-        buffer.writeUInt8(0xFF, 26);
+        buffer.writeUInt8(0xFF, 3);
+        buffer.writeUInt8(0x00, 4);
+        buffer.writeUInt8(0xFF, 5);
         //this color is chartreuse//
-        buffer.writeUInt8(0x00, 48);
-        buffer.writeUInt8(0xFF, 49);
-        buffer.writeUInt8(0x7F, 50);
+        buffer.writeUInt8(0x00, 6);
+        buffer.writeUInt8(0xFF, 7);
+        buffer.writeUInt8(0x7F, 8);
         reader.read(buffer);
         console.log(buffer);
     });
