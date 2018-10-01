@@ -1,17 +1,18 @@
 const assert = require('assert');
 const { readFileSync } = require('fs');
 const BitmapTransformer = require('../lib/bitmap-transformer');
-//const invert = require('../lib/invert-transform');
+const { invert } = require('../lib/invert-transformer');
 
 describe('bitmap file transformer', () => {
     
     let buffer = null;
     beforeEach(() => {
+        buffer = readFileSync('./test/test-bitmap.bmp');
         // TODO: file read sync './test/test-bitmap.bmp' into buffer variable
     });
 
     // "pinning" test, or "snapshot" test
-    it.skip('test whole transform', done => {
+    it('test whole transform', done => {
         // Use the BitmapTransformer class, 
         // passing in the buffer from the file read
         const bitmap = new BitmapTransformer(buffer);
@@ -25,7 +26,7 @@ describe('bitmap file transformer', () => {
             // and is accessible via bitmap.buffer.
     
             // Read the output file we saved earlier as the "standard" expected output file.
-            const expected = readFileSync('./test/inverted-expected.bmp')
+            const expected = readFileSync('./test/inverted-expected.bmp');
             assert.deepEqual(bitmap.buffer, expected);
             done();
 
