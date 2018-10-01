@@ -9,6 +9,7 @@ describe('Pixel Reader', () => {
         
         reader.on('color', color => {
             colors.push(color);
+            // console.log(colors);
         });
 
         // TODONE: subscribe to reader "color" event and push into `colors` array.
@@ -19,7 +20,6 @@ describe('Pixel Reader', () => {
         //     g: <green color value>,
         //     b: <blue color value>,
         // }
-
         reader.on('end', () => {
             // write deepEqual assertion for colors versus the
             // expected rgb color objects
@@ -28,21 +28,22 @@ describe('Pixel Reader', () => {
                 offset: 0,
                 b: '80',
                 g: '80',
-                r: '00'
+                r: '0'
             }, {
                 offset: 24,
-                b: 'FF',
-                g: '00',
-                r: 'FF'
+                b: 'ff',
+                g: '0',
+                r: 'ff'
             }, {
                 offset: 48,
-                b: '00',
-                g: 'FF',
-                r: '7F'
+                b: '0',
+                g: 'ff',
+                r: '7f'
             }           
             ]);
         });
         done(); 
+        
         // Create a buffer with known data for your colors
         const buffer = Buffer.alloc(24 * 3); // for three pixels
         // TODO: fill buffer with byte values that match your 
