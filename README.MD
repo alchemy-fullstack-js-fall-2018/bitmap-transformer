@@ -23,6 +23,6 @@ _Node.JS with unit testing done with Jest_
 
 ### License
 
-*WTFPL*
+*MIT*
 
 Copyright (c) 2018 **David Chhing, Mike Lambert**
